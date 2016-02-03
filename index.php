@@ -2,11 +2,12 @@
 
 date_default_timezone_set("Asia/Manila");
 
+// sample : php index.php admin password 192.168.1.109 81
 
-$HOST = '192.168.0.109';
-$PORT = 81;
-$USERNAME = 'admin';
-$PASSWORD  = "";
+$HOST = $argv[3];
+$PORT =$argv[4];
+$USERNAME = $argv[1];
+$PASSWORD  = $argv[2];
 
 $url = "http://" . $HOST . ":" . $PORT . "/snapshot.cgi?user=" . $USERNAME . "&pwd=" . $PASSWORD  . "&" . rand(1,1000);
 
