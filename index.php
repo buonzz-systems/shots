@@ -55,11 +55,11 @@ function upload_file($ftp_server, $ftp_user_name, $ftp_user_pass, $ftp_base_fold
     $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
 
     ftp_pasv($conn_id, true);
-    
+
     // upload a file
     if (ftp_put($conn_id, $remote_file, $local_file, FTP_BINARY)) {
       echo "successfully uploaded $file\n";
-      unlink($local_file);
+      //unlink($local_file);
     } else {
      echo "There was a problem while uploading $file\n";
     }
