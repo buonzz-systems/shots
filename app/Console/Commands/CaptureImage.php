@@ -38,15 +38,25 @@ class CaptureImage extends Command
      */
     public function handle()
     {
+        $cameras = config('shots.cameras');
+
+        foreach($cameras as $camera)
+        {
+            $this->save_image($camera);
+        }
+          
+    }
+
+    private function save_image($camera){
+
         $client = new Client([
-            'base_uri' => 'http://'. config('shots.cameras')[0]['hostname'] . ':' . config('shots.cameras')[0]['port'],
-            'timeout'  => 2.0,
+            'base_uri' => 'http://'. $camera['hostname'] . ':' . $camera['port'],
+            'timeout'  => 2.0
         ]);
 
-        $uri = "/snapshot.cgi?user=" . config('shots.cameras')[0]['username'] . "&pwd=" . config('shots.cameras')[0]['password']  . "&" . rand(1,1000);
+        $uri = "/snapshot.cgi?user=" . $camera['username'] . "&pwd=" . $camera['password']  . "&" . rand(1,1000);
 
-        $client->request('GET', $uri, ['sink' => storage_path('app/' . date("y-m-d-his") . ".jpg" ),
-                                       'debug' => true]);
-          
+        $filepath = storage_path('app/' . date("y-m-d-his") . ".jpg");
+        $client->request('GET', $uri, ['sink' => $filepath]);
     }
 }
