@@ -73,3 +73,13 @@ restart nginx
 ```
 sudo nginx -s reload
 ```
+
+Add the Cron scheduler
+
+```
+crontab -e
+```
+insert this in a new line
+```
+* * * * * /usr/bin/php /home/shots.domain.com/artisan schedule:run >> /dev/null 2>&1
+```
