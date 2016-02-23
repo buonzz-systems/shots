@@ -58,7 +58,7 @@ class CaptureImage extends Command
         
         \Log::info('http://' . $camera['hostname'] . ':' . $camera['port'] .$uri);
         
-        $filepath = storage_path('app/' . date("y-m-d-his") . ".jpg");
+        $filepath = storage_path('app/' . $camera['hostname'] . '_'. date("y-m-d-his") . ".jpg");
         $resource = fopen($filepath, 'w');
         $client->request('GET', $uri, ['sink' => $resource]);
     }
