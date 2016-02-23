@@ -55,8 +55,9 @@ class CaptureImage extends Command
         ]);
 
         $uri = "/snapshot.cgi?user=" . $camera['username'] . "&pwd=" . $camera['password']  . "&" . rand(1,1000);
-
+        Log::info($uri);
         $filepath = storage_path('app/' . date("y-m-d-his") . ".jpg");
-        $client->request('GET', $uri, ['sink' => $filepath]);
+        $resource = fopen($filepath, 'w');
+        $client->request('GET', $uri, ['sink' => $resource]);
     }
 }
