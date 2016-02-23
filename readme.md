@@ -16,6 +16,7 @@ chmod -R 777 storage
 adjust the env
 ```
 cp .env.example .env
+php artisan key:generate
 ```
 
 adjust the camera IP and settings
@@ -64,5 +65,11 @@ server {
 add it to enabled sites
 
 ```
-sudo ln -s /etc/nginx/sites-available/shots.buonzz.com /etc/nginx/sites-enabled/shots.buonzz.com
+sudo ln -s /etc/nginx/sites-available/shots.domain.com /etc/nginx/sites-enabled/shots.domain.com
+```
+
+restart nginx
+
+```
+sudo nginx -s reload
 ```
