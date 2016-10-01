@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
+use App\Jobs\UploadImage;
 
 class CaptureImage extends Command
 {
@@ -61,5 +62,7 @@ class CaptureImage extends Command
         $filepath = storage_path('app/' . $camera['hostname'] . '_'. date("y-m-d-his") . ".jpg");
         $resource = fopen($filepath, 'w');
         $client->request('GET', $uri, ['sink' => $resource]);
+
+        dispatch(new UploadImage($filepath));
     }
 }
