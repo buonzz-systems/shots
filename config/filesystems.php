@@ -61,6 +61,12 @@ return [
             'region' => 'your-region',
             'bucket' => 'your-bucket',
         ],
+        'ftp' => [
+            'driver'   => 'ftp',
+            'host'     => getenv('FTP_HOST'),
+            'username' => getenv('FTP_USER'),
+            'password' => getenv('FTP_PASSWORD')
+        ]
 
     ],
 
