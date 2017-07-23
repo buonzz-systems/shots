@@ -34,6 +34,6 @@ class UploadImage extends Job implements ShouldQueue
         $info = pathinfo($this->image_path);
         $contents = Storage::disk('local')->get($info['basename']);
         Storage::disk('ftp')->put($info['basename'], $contents);
-        Storage::disk('local')->delete($this->filepath);
+        Storage::disk('local')->delete($this->image_path);
     }
 }
